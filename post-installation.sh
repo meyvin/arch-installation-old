@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install my basic software needs that are available in the arch repo
-sudo pacman -Syu --noconfirm evolution guake nextcloud-client neofetch wget
+sudo pacman -Syu --noconfirm evolution guake nextcloud-client neofetch wget zsh
 
 # Install the AUR helper Pikaur
 cd ~
@@ -20,6 +20,7 @@ pikaur -S --noconfirm ttf-ms-fonts
 pikaur -S --noconfirm ulauncher
 
 sudo flatpak install -y spotify
+sudo flatpak install -y extensions
 
 #sudo systemctl enable --now auto-cpufreq
 
