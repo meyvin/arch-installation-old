@@ -98,5 +98,12 @@ This guide assumes you are installing Arch on a nvme ssd (nvme0n1). Use and/or r
     - Click “Finish”
 4. “Create” a manual first snapshot & exit Timeshift.
 
-## SWAP with hibernation
-- Still need to research and add this part.
+## Encrypted swap without hibernation or suspend-to-disk
+The easy way out if you want to have an encrypted swap partition without all the fancy stuff.
+
+1. `sudo -i`
+2. `export SWAPUUID=$(blkid -s UUID -o value /dev/nvme0n1p2)`
+3. `echo "cryptswap UUID=${SWAPUUID} /dev/urandom swap,offset=1024,cipher=aes-xts-plain64,size=512" >> /etc/crypttab`
+4. Check to see if everything went well: `cat /etc/crypttab`
+5. Make changes to fstab: `sed -i "s|UUID=${SWAPUUID}|/dev/mapper/cryptswap|" /etc/fstab`. The sed command replaces the UUID of your swap partition with the encrypted device `/dev/mapper/cryptroot`.
+6. Another check to see if everything went well: `cat /etc/fstab`
