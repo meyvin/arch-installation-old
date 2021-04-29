@@ -78,13 +78,14 @@ This guide assumes you are installing Arch on a nvme ssd (nvme0n1). Use and/or r
 1. Install the Gnome desktop through the `/arch-installation/gnome-installation.sh` script. Don't forget to `chmod +x` it first.
 2. The system will automaticly reboot to the Gnome DE.
 
-## Post-installation Pikaur, Timeshift, Timeshift-autosnap and other software
+## Post-installation Paru, Timeshift, Timeshift-autosnap and other software
 1. `sudo pacman -Syyu`
 2. `sudo chown $USER:$USER -R /arch-installation && cd /arch-installation`. Otherwise we will run into issues.
 3. Edit the `post-installation.sh` script to your liking.
 4. `chmod +x ./post-installation.sh && ./post-installation.sh`
 5. I seperated all my development dependencies into `dev-environment.sh`. You can change and make this executable and run it if you want to. It's not a necessary step.
 6. All my repo files are unnecesary at this stage. Since you probably entered a password in the `basic-installation.sh` script it would be wise to delete everything: `sudo rm -R /arch-installation`
+7. If you have enabled ssh don't forget to disable it again.
 
 ## Timeshift settings
 1. Select “BTRFS” as the “Snapshot Type”; continue with “Next”
