@@ -4,15 +4,15 @@ sudo pacman -Syu --noconfirm docker docker-compose
 sudo systemctl enable docker.service
 sudo usermod -aG docker $USER
 
-pikaur -S --noconfirm dotnet-host-bin
-pikaur -S --noconfirm dotnet-runtime-bin
-pikaur -S --noconfirm dotnet-sdk-bin
-pikaur -S --noconfirm gitflow-avh
-pikaur -S --noconfirm intellij-idea-ultimate-edition
-pikaur -S --noconfirm intellij-idea-ultimate-edition-jre
-pikaur -S --noconfirm postman-bin
-pikaur -S --noconfirm sublime-merge
-pikaur -S --noconfirm visual-studio-code-bin
+paru -S --noconfirm dotnet-host-bin
+paru -S --noconfirm dotnet-runtime-bin
+paru -S --noconfirm dotnet-sdk-bin
+paru -S --noconfirm gitflow-avh
+paru -S --noconfirm intellij-idea-ultimate-edition
+paru -S --noconfirm intellij-idea-ultimate-edition-jre
+paru -S --noconfirm postman-bin
+paru -S --noconfirm sublime-merge
+paru -S --noconfirm visual-studio-code-bin
 
 git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.oh-my-zsh/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh.plugins/zsh-syntax-highlighting
