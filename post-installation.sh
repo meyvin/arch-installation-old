@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install my basic software needs that are available in the arch repo
-sudo pacman -Syu --noconfirm evolution guake nextcloud-client wget zsh
+sudo pacman -Syu --noconfirm plank evolution guake nextcloud-client wget zsh
 
 # Install the AUR helper Pikaur
 cd ~
