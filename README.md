@@ -19,7 +19,7 @@ This guide assumes you are installing Arch on a nvme ssd (nvme0n1). Use and/or r
 2. Enable the ssh service: `systemctl enable sshd.service`
 
 ## Partitions
-1. `gdisk /dev/nvme0n1`.
+1. `gdisk /dev/nvme0n1`
 2. If your drive still has partitions erase them with the `d` command first.
 3. Efi Partition: `n > default > default > +512M > ef00`
 4. Swap Partition: `n > default > default > +16G > 8200`
@@ -50,7 +50,7 @@ This guide assumes you are installing Arch on a nvme ssd (nvme0n1). Use and/or r
 1. `mkdir /mnt/boot && mount /dev/nvme0n1p1 /mnt/boot`
 
 ## Arch base packages
-1. `pacstrap /mnt base linux linux-firmware git vim amd-ucode btrfs-progs`
+1. Install all the arch base packages using: `pacstrap /mnt base linux linux-firmware git vim amd-ucode btrfs-progs` Replace `amd-ucode` with `intel-ucode` if you have an Intel processor.
 
 ## Filesystem table
 1. `genfstab -U /mnt >> /mnt/etc/fstab`
@@ -58,34 +58,34 @@ This guide assumes you are installing Arch on a nvme ssd (nvme0n1). Use and/or r
 ## Chroot into installation and clone repo
 1. `arch-chroot /mnt`
 2. `cd / && git clone https://github.com/meyvin/arch-installation && cd arch-installation`
-3. Make changes to the `basic-installation.sh` script. In particular the variables.
-4. `chmod +x ./basic-installation.sh`
-5. `cd / && ./arch-installation/basic-installation.sh`
+3. Make changes to the `basic-installation.sh` script. In particular the user related variables.
+4. `chmod +x ./basic-installation.sh && ./arch-installation/basic-installation.sh`
 
 ## Mkinitcpio configuration
-1. add `btrfs` to the /etc/mkinitcpio.conf modules.
-2. add `encrypt` to the /etc/mkinitcpio.conf hooks before `filesystems`
+1. add `btrfs` to the `/etc/mkinitcpio.conf` modules.
+2. add `encrypt` to the `/etc/mkinitcpio.conf` hooks before the `filesystems` entry.
 3. regenerate `mkinitcpio -p linux`
 
 ## Grub
-1. Grab the UUID of the root partition (not the mapper) with `blkid`
+1. Grab the UUID of the root partition (not the mapper) with `blkid` In my case it is the UUID of /dev/nvme0n1p3.
 2. `vim /etc/default/grub` and add the following line to `GRUB_CMDLINE_LINUX_DEFAULT`: `cryptdevice=UUID={UUID}:cryptroot root=/dev/mapper/cryptroot`
 3. `grub-mkconfig -o /boot/grub/grub.cfg`
 4. `exit`
-5. Hopefully everything went right and you can `shutdown -r now` and get into you Arch installation.
+5. Hopefully everything went right and you can `shutdown -r now` and boot into your Arch installation.
 
 ## Gnome
-1. Install the Gnome desktop through the `/arch-installation/gnome-installation.sh` script. Don't forget to `chmod +x` it first.
-2. The system will automaticly reboot to the Gnome DE.
+1. Install the Gnome desktop environment through the `` script. Don't forget to `chmod +x` it first.
+2. `cd /arch-installation && chmod +x ./gnome-installation.sh && ./gnome-installation.sh`
+2. The system will automaticly reboot into the Gnome DE.
 
 ## Post-installation Paru, Timeshift, Timeshift-autosnap and other software
 1. `sudo pacman -Syyu`
-2. `sudo chown $USER:$USER -R /arch-installation && cd /arch-installation`. Otherwise we will run into issues.
+2. `sudo chown $USER:$USER -R /arch-installation && cd /arch-installation`. Otherwise we will run into issues later with the Paru AUR helper related packages.
 3. Edit the `post-installation.sh` script to your liking.
-4. `chmod +x ./post-installation.sh && ./post-installation.sh`
+4. `cd /arch-installation && chmod +x ./post-installation.sh && ./post-installation.sh`
 5. I seperated all my development dependencies into `dev-environment.sh`. You can change and make this executable and run it if you want to. It's not a necessary step.
 6. All my repo files are unnecesary at this stage. Since you probably entered a password in the `basic-installation.sh` script it would be wise to delete everything: `sudo rm -R /arch-installation`
-7. If you have enabled ssh don't forget to disable it again.
+7. If you have enabled ssh don't forget to disable it again: `sudo systemctl disable sshd.service`
 
 ## Timeshift settings
 1. Select “BTRFS” as the “Snapshot Type”; continue with “Next”
@@ -97,7 +97,7 @@ This guide assumes you are installing Arch on a nvme ssd (nvme0n1). Use and/or r
     - Continue with “Next”
     - I also include @home subvolume (which is not selected by default). Note that when you restore a snapshot Timeshift will ask you again whether or not to include @home in the restore process.
     - Click “Finish”
-4. “Create” a manual first snapshot & exit Timeshift.
+4. “Create” your first snapshot manually and exit Timeshift.
 
 ## Encrypted swap without hibernation or suspend-to-disk
 The easy way out if you want to have an encrypted swap partition without all the fancy stuff.
