@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Install my basic software needs that are available in the arch repo
-sudo pacman -Syu --noconfirm plank evolution guake nextcloud-client wget zsh
+sudo pacman -Syu --noconfirm plank evolution guake nextcloud-client wget zsh unrar
 
-# Install the AUR helper Pikaur
+# Install the AUR helper Paru
 cd ~
 git clone https://aur.archlinux.org/paru.git
 cd paru/
