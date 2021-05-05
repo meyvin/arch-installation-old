@@ -1,7 +1,7 @@
-# Arch linux installation
+# Arch linux - encrypted btrfs Gnome installation
 This is my personal repo to install Arch Linux. I am not an expert so take this guide with a grain of salt. It is still an exploration for me as well. Most of the information comes from [Arch Wiki](https://wiki.archlinux.org/), [EFLinux.com](https://eflinux.com/) and [Mutschler.eu](https://mutschler.eu/).
 
-This guide assumes you are installing Arch on a nvme ssd (nvme0n1). Use and/or replace your device id by first looking it up via `lsblk`.
+This guide assumes you are installing Arch on a nvme ssd (***nvme0n1***). Find your own designated installation device by first looking it up via `lsblk`
 
 ## Create and boot the Arch installer
 1. Grab the latest Arch iso from [https://archlinux.org/](https://archlinux.org).
