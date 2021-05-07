@@ -26,7 +26,7 @@ This guide assumes you are installing Arch on a nvme ssd (***nvme0n1***). Find y
 5. Root Partition: `n > default > default > default > default`
 6. Write all changes: `w`
 7. Check to see if everything is ok: `lsblk`
-8. `mkfs.fat -F32 /dev/nvme0n1p1`
+8. `mkfs.vfat /dev/nvme0n1p1`
 9. `mkswap /dev/nvme0n1p2`
 10. `swapon /dev/nvme0n1p2`
 
