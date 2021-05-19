@@ -62,20 +62,20 @@ This guide assumes you are installing Arch on a nvme ssd (***nvme0n1***). Find y
 4. `chmod +x ./basic-installation.sh && ./arch-installation/basic-installation.sh`
 
 ## Mkinitcpio configuration
-1. add `btrfs` to the `/etc/mkinitcpio.conf` modules.
-2. add `encrypt` to the `/etc/mkinitcpio.conf` hooks before the `filesystems` entry.
-3. regenerate `mkinitcpio -p linux`
+1. add all the hooks to the `/etc/mkinitcpio.conf` file using: `sudo sed -i 's/^HOOKS=.*/HOOKS="base udev autodetect modconf block encrypt filesystems keyboard fsck"/'`.
+3. regenerate it `mkinitcpio -p linux`
 
-## Grub
-1. Grab the UUID of the root partition (not the mapper) with `blkid` In my case it is the UUID of /dev/nvme0n1p3.
-2. `vim /etc/default/grub` and add the following line to `GRUB_CMDLINE_LINUX_DEFAULT`: `cryptdevice=UUID={UUID}:cryptroot root=/dev/mapper/cryptroot`
-3. `grub-mkconfig -o /boot/grub/grub.cfg`
+## Grub root decrypt configuration
+1. Let's create a variable that contains the `/dev/nvme0n1p1` UUID and put it in something that GRUB can work with: `export ROOTPARTITION="cryptdevice=UUID=$(blkid -s UUID -o value /dev/nvme0n1p3):cryptroot root=/dev/mapper/cryptroot"`
+2. Use `sed` to add this line to the `/etc/default/grub` configuration file using the following command: `sudo sed -i 's|GRUB_CMDLINE_LINUX_DEFAULT="[^"]*|& '"$ROOTPARTITION"'|' /etc/default/grub`
+3. Reconfigure grub: `grub-mkconfig -o /boot/grub/grub.cfg`
 4. `exit`
 5. Hopefully everything went right and you can `shutdown -r now` and boot into your Arch installation.
 
 ## DWM
-1. Install DWM through the `dwm-installation.sh` script. Don't forget to `chmod +x` it first.
-2. After it's done it should boot automatically into DWM
+1. Copy `dwm-installation.sh` to the user folder: `sudo cp /arch-installation/dwm-installation.sh ~/ && sudo chown $USER:$USER ~/dwm-installation.sh && chmod +x ~/dwm-installation.sh`
+2. Execute it: `cd ~ && ./dwm-installation.sh`
+3. After it's done it should boot automatically into DWM
 
 ## Post-installation Paru, Timeshift, Timeshift-autosnap and other software
 1. All my repo files are unnecesary at this stage. Since you probably entered a password in the `basic-installation.sh` script it would be wise to delete everything: `sudo rm -R /arch-installation`
