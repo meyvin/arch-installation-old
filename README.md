@@ -1,18 +1,18 @@
-# Arch linux - encrypted btrfs Gnome installation
+# Arch linux - encrypted btrfs DWM installation
 This is my personal repo to install Arch Linux. I am not an expert so take this guide with a grain of salt. It is still an exploration for me as well. Most of the information comes from [Arch Wiki](https://wiki.archlinux.org/), [EFLinux.com](https://eflinux.com/) and [Mutschler.eu](https://mutschler.eu/).
 
 This guide assumes you are installing Arch on a nvme ssd (***nvme0n1***). Find your own designated installation device by first looking it up via `lsblk`
 
 ## Create and boot the Arch installer
 1. Grab the latest Arch iso from [https://archlinux.org/](https://archlinux.org).
-2. Use [https://www.balena.io/etcher/](Etcher), `DD` or whatever floats your boat to create a bootable usb device.
+2. Write the image to a USB device: `sudo dd bs=4M if=arch.iso of=/dev/sdx conv=fdatasync status=progress`
 3. Boot the Arch usb installer.
 
 ## Optional: setup wifi if ethernet is not available
-1. Search the wlan interface link with: `ip link`
-2. `ip link set {interface} up`
-3. `wpa_supplicant -B -i interface -c <(wpa_passphrase MYSSID passphrase)`
-4. `dhcpcd`.
+1. Search the wlan interface name with: `ip link`
+2. `ip link set {interface-name} up`
+3. `wpa_supplicant -B -i {interface-name} -c <(wpa_passphrase MYSSID passphrase)`
+4. `dhcpcd`
 
 ## Optional: enable SSH if you want to install it through another device
 1. Add a root password: `passwd`
@@ -39,12 +39,12 @@ This guide assumes you are installing Arch on a nvme ssd (***nvme0n1***). Find y
 2. `mount /dev/mapper/cryptroot /mnt && cd /mnt`
 3. `btrfs subvolume create @`
 4. `btrfs subvolume create @home`
-5. `btrfs subvolume create @cache`
+5. `btrfs subvolume create @var`
 6. `cd && umount /mnt`
 7. `mount -o noatime,compress=zstd,space_cache,discard=async,subvol=@ /dev/mapper/cryptroot /mnt`
-8. `mkdir /mnt/home && mkdir -p /mnt/var/cache`
+8. `mkdir /mnt/home && mkdir  /mnt/var`
 9. `mount -o noatime,compress=zstd,space_cache,discard=async,subvol=@home /dev/mapper/cryptroot /mnt/home`
-10. `mount -o noatime,compress=zstd,space_cache,discard=async,subvol=@cache /dev/mapper/cryptroot /mnt/var/cache`
+10. `mount -o noatime,compress=zstd,space_cache,discard=async,subvol=@var /dev/mapper/cryptroot /mnt/var`
 
 ## EFI Partition
 1. `mkdir /mnt/boot && mount /dev/nvme0n1p1 /mnt/boot`
@@ -73,19 +73,13 @@ This guide assumes you are installing Arch on a nvme ssd (***nvme0n1***). Find y
 4. `exit`
 5. Hopefully everything went right and you can `shutdown -r now` and boot into your Arch installation.
 
-## Gnome
-1. Install the Gnome desktop environment through the `` script. Don't forget to `chmod +x` it first.
-2. `cd /arch-installation && chmod +x ./gnome-installation.sh && ./gnome-installation.sh`
-2. The system will automaticly reboot into the Gnome DE.
+## DWM
+1. Install DWM through the `dwm-installation.sh` script. Don't forget to `chmod +x` it first.
+2. After it's done it should boot automatically into DWM
 
 ## Post-installation Paru, Timeshift, Timeshift-autosnap and other software
-1. `sudo pacman -Syyu`
-2. `sudo chown $USER:$USER -R /arch-installation && cd /arch-installation`. Otherwise we will run into issues later with the Paru AUR helper related packages.
-3. Edit the `post-installation.sh` script to your liking.
-4. `cd /arch-installation && chmod +x ./post-installation.sh && ./post-installation.sh`
-5. I seperated all my development dependencies into `dev-environment.sh`. You can change and make this executable and run it if you want to. It's not a necessary step.
-6. All my repo files are unnecesary at this stage. Since you probably entered a password in the `basic-installation.sh` script it would be wise to delete everything: `sudo rm -R /arch-installation`
-7. If you have enabled ssh don't forget to disable it again: `sudo systemctl disable sshd.service`
+1. All my repo files are unnecesary at this stage. Since you probably entered a password in the `basic-installation.sh` script it would be wise to delete everything: `sudo rm -R /arch-installation`
+2. If you have enabled ssh don't forget to disable it again: `sudo systemctl disable sshd.service`
 
 ## Timeshift settings
 1. Select “BTRFS” as the “Snapshot Type”; continue with “Next”
