@@ -62,8 +62,8 @@ This guide assumes you are installing Arch on a nvme ssd (***nvme0n1***). Find y
 4. `chmod +x ./basic-installation.sh && ./arch-installation/basic-installation.sh`
 
 ## Mkinitcpio configuration
-1. add all the hooks to the `/etc/mkinitcpio.conf` file using: `sudo sed -i 's/^HOOKS=.*/HOOKS="base udev autodetect modconf block encrypt filesystems keyboard fsck"/'`.
-3. regenerate it `mkinitcpio -p linux`
+1. Add all the hooks to the `/etc/mkinitcpio.conf` file using: `sudo sed -i 's/^HOOKS=.*/HOOKS="base udev autodetect modconf block encrypt filesystems keyboard fsck"/' /etc/mkinitcpio.conf`
+3. Regenerate it `mkinitcpio -p linux`
 
 ## Grub root decrypt configuration
 1. Let's create a variable that contains the `/dev/nvme0n1p3` UUID and put it in something that GRUB can work with: `export ROOTPARTITION="cryptdevice=UUID=$(blkid -s UUID -o value /dev/nvme0n1p3):cryptroot root=/dev/mapper/cryptroot"`
@@ -72,10 +72,11 @@ This guide assumes you are installing Arch on a nvme ssd (***nvme0n1***). Find y
 4. `exit`
 5. Hopefully everything went right and you can `shutdown -r now` and boot into your Arch installation.
 
-## DWM
-1. Copy `dwm-installation.sh` to the user folder: `sudo cp /arch-installation/dwm-installation.sh ~/ && sudo chown $USER:$USER ~/dwm-installation.sh && chmod +x ~/dwm-installation.sh`
-2. Execute it: `cd ~ && ./dwm-installation.sh`
-3. After it's done it should boot automatically into DWM
+## DWM 
+1. If you didn't reboot or are still logged in as root, you should now switch to your user before executing the upcoming script.
+2. Copy `dwm-installation.sh` to the user home folder: `sudo cp /arch-installation/dwm-installation.sh ~/ && sudo chown $USER:$USER ~/dwm-installation.sh && chmod +x ~/dwm-installation.sh`
+3. Execute it: `cd ~ && ./dwm-installation.sh`
+4. After it's done it should boot automatically into DWM
 
 ## Post-installation Paru, Timeshift, Timeshift-autosnap and other software
 1. All my repo files are unnecesary at this stage. Since you probably entered a password in the `basic-installation.sh` script it would be wise to delete everything: `sudo rm -R /arch-installation`
