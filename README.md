@@ -66,7 +66,7 @@ This guide assumes you are installing Arch on a nvme ssd (***nvme0n1***). Find y
 3. regenerate it `mkinitcpio -p linux`
 
 ## Grub root decrypt configuration
-1. Let's create a variable that contains the `/dev/nvme0n1p1` UUID and put it in something that GRUB can work with: `export ROOTPARTITION="cryptdevice=UUID=$(blkid -s UUID -o value /dev/nvme0n1p3):cryptroot root=/dev/mapper/cryptroot"`
+1. Let's create a variable that contains the `/dev/nvme0n1p3` UUID and put it in something that GRUB can work with: `export ROOTPARTITION="cryptdevice=UUID=$(blkid -s UUID -o value /dev/nvme0n1p3):cryptroot root=/dev/mapper/cryptroot"`
 2. Use `sed` to add this line to the `/etc/default/grub` configuration file using the following command: `sudo sed -i 's|GRUB_CMDLINE_LINUX_DEFAULT="[^"]*|& '"$ROOTPARTITION"'|' /etc/default/grub`
 3. Reconfigure grub: `grub-mkconfig -o /boot/grub/grub.cfg`
 4. `exit`
