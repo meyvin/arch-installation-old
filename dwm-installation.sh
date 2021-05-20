@@ -37,6 +37,7 @@ paru -S --noconfirm intellij-idea-ultimate-edition
 paru -S --noconfirm intellij-idea-ultimate-edition-jre
 paru -S --noconfirm joplin-desktop
 paru -S --noconfirm nerd-fonts-complete
+paru -S --noconfirm otf-monaco-powerline-font-git
 paru -S --noconfirm postman-bin
 paru -S --noconfirm siji
 paru -S --noconfirm sublime-merge
