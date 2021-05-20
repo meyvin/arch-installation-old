@@ -17,7 +17,7 @@ sudo sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 sudo pacman -Syu
 
 # Basic Window Manager
-sudo pacman -S xorg-server xorg-xinit xorg-xrandr xorg-xsetroot firefox-developer-edition nitrogen picom wget zsh unrar docker docker-compose flameshot ranger smbclient playerctl thunar evolution
+sudo pacman -S xorg-server xorg-xinit xorg-xrandr xorg-xsetroot firefox-developer-edition nitrogen picom wget zsh unrar docker docker-compose flameshot ranger smbclient playerctl thunar thunar-archive-manager file-roller evolution 
 
 # Install the AUR helper Paru
 cd ~
