@@ -17,7 +17,7 @@ sudo sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 sudo pacman -Syu
 
 # Basic Window Manager
-sudo pacman -S xorg-server xorg-xinit xorg-xrandr xorg-xsetroot firefox-developer-edition nitrogen picom wget zsh unrar docker docker-compose flameshot ranger smbclient playerctl thunar thunar-archive-manager file-roller evolution 
+sudo pacman -S xorg-server xorg-xinit xorg-xrandr xorg-xsetroot firefox-developer-edition nitrogen picom wget zsh unrar docker docker-compose flameshot ranger smbclient playerctl thunar thunar-archive-manager file-roller evolution arc-gtk-theme dunst 
 
 # Install the AUR helper Paru
 cd ~
@@ -28,6 +28,7 @@ rm -r ~/paru
 
 # Install personal AUR packages
 paru -S --noconfirm appimagelauncher
+paru -S --noconfirm checkupdates+aur
 paru -S --noconfirm dotnet-host-bin
 paru -S --noconfirm dotnet-runtime-bin
 paru -S --noconfirm dotnet-sdk-bin
@@ -36,6 +37,7 @@ paru -S --noconfirm gitflow-avh
 paru -S --noconfirm intellij-idea-ultimate-edition
 paru -S --noconfirm intellij-idea-ultimate-edition-jre
 paru -S --noconfirm joplin-desktop
+paru -S --noconfirm libxft-bgra
 paru -S --noconfirm nerd-fonts-complete
 paru -S --noconfirm otf-monaco-powerline-font-git
 paru -S --noconfirm postman-bin
