@@ -27,7 +27,6 @@ makepkg -si --noconfirm
 rm -r ~/paru
 
 # Install personal AUR packages
-paru -S --noconfirm appimagelauncher
 paru -S --noconfirm checkupdates+aur
 paru -S --noconfirm dotnet-host-bin
 paru -S --noconfirm dotnet-runtime-bin
