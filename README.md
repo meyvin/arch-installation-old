@@ -11,12 +11,12 @@ This guide assumes you are installing Arch on a nvme ssd (***nvme0n1***). Find y
 ## Optional: setup wifi if ethernet is not available
 1. Search the wlan interface name with: `ip link`
 2. `ip link set {interface-name} up`
-3. `wpa_supplicant -B -i {interface-name} -c <(wpa_passphrase MYSSID passphrase)`
-4. `dhcpcd`
+3. `iwctl` for an interactive prompt.
+4. `wsc {device} push-button` to connect using WPS. To connecting using a passphrase: `iwctl --passphrase passphrase station device connect SSID`
 
 ## Optional: enable SSH if you want to install it through another device
 1. Add a root password: `passwd`
-2. Enable the ssh service: `systemctl enable sshd.service`
+2. The SSH server is enabled by default but if it's not: `systemctl enable sshd.service`
 
 ## Partitions
 1. `gdisk /dev/nvme0n1`
