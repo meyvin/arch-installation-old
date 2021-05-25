@@ -62,12 +62,12 @@ This guide assumes you are installing Arch on a nvme ssd (***nvme0n1***). Find y
 4. `chmod +x ./basic-installation.sh && ./arch-installation/basic-installation.sh`
 
 ## Mkinitcpio configuration
-1. Add all the hooks to the `/etc/mkinitcpio.conf` file using: `sudo sed -i 's/^HOOKS=.*/HOOKS="base udev autodetect modconf block encrypt filesystems keyboard fsck"/' /etc/mkinitcpio.conf`
+1. Add all the hooks to the `/etc/mkinitcpio.conf` file using: `sed -i 's/^HOOKS=.*/HOOKS="base udev autodetect modconf block encrypt filesystems keyboard fsck"/' /etc/mkinitcpio.conf`
 3. Regenerate it `mkinitcpio -p linux`
 
 ## Grub root decrypt configuration
 1. Let's create a variable that contains the `/dev/nvme0n1p3` UUID and put it in something that GRUB can work with: `export ROOTPARTITION="cryptdevice=UUID=$(blkid -s UUID -o value /dev/nvme0n1p3):cryptroot root=/dev/mapper/cryptroot"`
-2. Use `sed` to add this line to the `/etc/default/grub` configuration file using the following command: `sudo sed -i 's|GRUB_CMDLINE_LINUX_DEFAULT="[^"]*|& '"$ROOTPARTITION"'|' /etc/default/grub`
+2. Use `sed` to add this line to the `/etc/default/grub` configuration file using the following command: `sed -i 's|GRUB_CMDLINE_LINUX_DEFAULT="[^"]*|& '"$ROOTPARTITION"'|' /etc/default/grub`
 3. Reconfigure grub: `grub-mkconfig -o /boot/grub/grub.cfg`
 4. `exit`
 5. Hopefully everything went right and you can `shutdown -r now` and boot into your Arch installation.
