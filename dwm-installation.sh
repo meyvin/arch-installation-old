@@ -60,16 +60,25 @@ sudo systemctl enable docker.service
 sudo usermod -aG docker $USER
 
 # Install DWM
-cd ~
-git clone https://github.com/meyvin/dwm-environment.git .dwm
-cd ~/.dwm/dwm-6.2
-sudo cp config.def.h config.h && make && sudo make clean install
-cd ~/.dwm/dmenu
-sudo cp config.def.h config.h && make && sudo make clean install
-cd ~/.dwm/st
-sudo cp config.def.h config.h && make && sudo make clean install
-chmod +x ~/.dwm/dwm-bar/dwm_bar.sh
-ln -s ~/.dwm/.xinitrc ~/.xinitrc
+cd ~ && mkdir .dwm
+git clone https://github.com/meyvin/dwm.git ~/.dwm/dwm
+cd ~/.dwm/dwm && sudo make clean install && cd ~
+
+# Install Dmenu
+git clone https://github.com/meyvin/dmenu.git ~/.dwm/dmenu
+cd ~/.dwm/dmenu && sudo make clean install && cd ~
+
+# Install ST
+git clone https://github.com/meyvin/dmenu.git ~/.dwm/st
+cd ~/.dwm/st && sudo make clean install && cd ~
+
+# Install DWMBlock
+git clone https://github.com/meyvin/dwmblocks.git ~/.dwm/dwmblocks
+cd ~/.dwm/dwmblocks && sudo make clean install && cd ~
+
+# Install Dotfiles
+git clone https://github.com/meyvin/dotfiles.git ~/Dotfiles
+chmod +x ~/Dotfiles/symlink.sh && ~/Dotfiles/symlink.sh
 
 /bin/echo -e "\e[1;32mStarting DWM  in 5..4..3..2..1..\e[0m"
 sleep 5
