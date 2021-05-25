@@ -68,7 +68,7 @@ git clone https://github.com/meyvin/dmenu.git ~/.dwm/dmenu
 cd ~/.dwm/dmenu && sudo make clean install && cd ~
 
 # Install ST
-git clone https://github.com/meyvin/dmenu.git ~/.dwm/st
+git clone https://github.com/meyvin/st.git ~/.dwm/st
 cd ~/.dwm/st && sudo make clean install && cd ~
 
 # Install DWMBlock
