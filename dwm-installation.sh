@@ -17,7 +17,7 @@ sudo sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 sudo pacman -Syu
 
 # Basic Window Manager
-sudo pacman -S xorg-server xorg-xinit xorg-xrandr xorg-xsetroot firefox-developer-edition nitrogen picom wget zsh unrar docker docker-compose flameshot ranger smbclient playerctl thunar thunar-archive-plugin file-roller evolution nextcloud-client blueman
+sudo pacman -S xorg-server xorg-xinit xorg-xrandr xorg-xsetroot firefox-developer-edition nitrogen picom wget zsh unrar docker docker-compose flameshot ranger smbclient playerctl thunar thunar-archive-plugin file-roller evolution nextcloud-client blueman alacritty
 
 # Install the AUR helper Paru
 cd ~
@@ -68,8 +68,8 @@ git clone https://github.com/meyvin/dmenu.git ~/.dwm/dmenu
 cd ~/.dwm/dmenu && sudo make clean install && cd ~
 
 # Install ST
-git clone https://github.com/meyvin/st.git ~/.dwm/st
-cd ~/.dwm/st && sudo make clean install && cd ~
+#git clone https://github.com/meyvin/st.git ~/.dwm/st
+#cd ~/.dwm/st && sudo make clean install && cd ~
 
 # Install DWMBlock
 git clone https://github.com/meyvin/dwmblocks.git ~/.dwm/dwmblocks
