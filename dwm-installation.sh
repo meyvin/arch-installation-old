@@ -32,7 +32,6 @@ paru -S --noconfirm ferdi-bin
 paru -S --noconfirm gitflow-avh
 paru -S --noconfirm intellij-idea-ultimate-edition
 paru -S --noconfirm intellij-idea-ultimate-edition-jre
-paru -S --noconfirm joplin-desktop
 paru -S --noconfirm libxft-bgra
 paru -S --noconfirm nerd-fonts-complete
 paru -S --noconfirm otf-monaco-powerline-font-git
@@ -47,8 +46,9 @@ paru -S --noconfirm arc-gtk-theme
 paru -S --noconfirm dunst
 paru -S --noconfirm sxiv
 paru -S --noconfirm pcmanfm
-paru -S --noconfirm i3lock-color
+paru -S --noconfirm betterlockscreen
 paru -S --noconfirm xidlehook 
+paru -S --noconfirm brave-bin
 #paru -S --noconfirm auto-cpufreq
 
 # Flatpak software
