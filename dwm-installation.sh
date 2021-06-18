@@ -20,7 +20,7 @@ sudo pacman -Syu
 sudo pacman -S xorg-server xorg-xinit xorg-xrandr xorg-xsetroot
 firefox-developer-edition nitrogen picom wget zsh unrar docker docker-compose
 flameshot ranger smbclient playerctl file-roller blueman alacritty vlc scrot
-zathura
+zathura thunderbird
 
 # Install the AUR helper Paru
 cd ~
