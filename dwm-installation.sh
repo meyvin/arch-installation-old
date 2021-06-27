@@ -52,6 +52,7 @@ paru -S --noconfirm pcmanfm
 paru -S --noconfirm betterlockscreen
 paru -S --noconfirm xidlehook 
 paru -S --noconfirm brave-bin
+paru -S --noconfirm pamixer
 #paru -S --noconfirm auto-cpufreq
 
 # Flatpak software
