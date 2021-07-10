@@ -24,6 +24,9 @@ pacman -S grub grub-btrfs efibootmgr networkmanager network-manager-applet dialo
 # pacman -S --noconfirm xf86-video-amdgpu
 # pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
 
+cd ~; git clone https://aur.archlinux.org/paru; cd ~/paru; makepkg -si; rm -rf
+~/paru
+
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 
