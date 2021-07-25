@@ -8,8 +8,8 @@ My `arch.sh` installation script assumes you are installing Arch on a nvme ssd (
 2. Write the image to a USB device: `sudo dd bs=4M if=arch.iso of=/dev/sdx conv=fdatasync status=progress`
 3. Boot the Arch usb installer.
 
-## Basic Arch installation - Encrypted BTRFS with @, @home and @var partitions
-1. I'm assuming you have an active internet connection if not: [https://wiki.archlinux.org/title/installation_guide#Connect_to_the_internet](Arch Wiki - Connect to the Internet)
+## Basic Arch installation
+1. I'm assuming you have an active internet connection if not: [Arch Wiki - Connect to the Internet](https://wiki.archlinux.org/title/installation_guide#Connect_to_the_internet)
 2. `curl https://raw.githubusercontent.com/meyvin/arch-installation/main/arch.sh -o arch.sh`
 3. `chmod +x arch.sh; ./arch.sh`
 4. Follow the installation and after it's done it will automatically reboot to

@@ -79,7 +79,7 @@ if [[ ! -z $encryption_passphrase ]]; then
     encrypt_mkinitcpio_hook="encrypt"
     physical_volume="/dev/mapper/archlinux"
 else
-    physical_volume="/dev/sda2"
+    exit 0
 fi
 
 echo "Setting up BTRFS"
