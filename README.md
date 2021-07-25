@@ -17,9 +17,8 @@ My `arch.sh` installation script assumes you are installing Arch on a nvme ssd (
 
 ## Sway installation
 2. `curl https://raw.githubusercontent.com/meyvin/arch-installation/main/sway.sh -o sway.sh`
-3. `chmod +x sway.sh; ./sway.sh`
-3a. The AUR `nerds-fonts-complete` package is > 1GB and takes a long time to
-install so just wait. 
+3. `chmod +x sway.sh; ./sway.sh` _The AUR `nerds-fonts-complete` package is > 1GB and takes a long time to
+install so just wait._ 
 4. Follow the installation and after it's done it will automatically reboot to
    the Sway window manager.
 
