@@ -20,9 +20,9 @@ sudo firewall-cmd --reload
 #### Pacman packages                                                        ####
 ################################################################################
 echo "Enable Colors, Parallel Downloads and Multilib in /etc/pacman.conf"
-sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
-sed -i '/Color/s/^#//g' /etc/pacman.conf
-sed -i '/ParallelDownloads/s/^#//g' /etc/pacman.conf
+sudo sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
+sudo sed -i '/Color/s/^#//g' /etc/pacman.conf
+sudo sed -i '/ParallelDownloads/s/^#//g' /etc/pacman.conf
 
 echo "Updating pacman"
 sudo pacman -Syu
