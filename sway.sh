@@ -29,13 +29,16 @@ sudo pacman -Syu
 
 echo "Installing Sway Desktop Environment"
 sudo pacman -S \
+adobe-base-14-fonts \
 alacritty \
 blueman \
 docker \
 docker-compose \
 file-roller \
 firefox-developer-edition \
+gammastep \
 grub-btrfs \
+jq \
 lib32-libva-mesa-driver \
 lib32-mesa \
 lib32-mesa-vdpau \
@@ -47,7 +50,10 @@ nautilus \
 mesa \
 mesa-vdpau \
 playerctl \
+qt5-wayland \
+qt6-wayland \
 smbclient \
+slurp \
 sway \
 swayidle \
 swaylock \
@@ -57,6 +63,8 @@ thunar-media-tags-plugin \
 thunar-volman \
 thunderbird \
 unrar \
+virtualbox \
+virtualbox-host-modules-arch \
 vlc \
 vulkan-radeon \
 wget \
@@ -91,6 +99,7 @@ nordic-theme \
 otf-monaco-powerline-font-git \
 postman-bin \
 siji \
+swappy \
 sxiv \
 tela-icon-theme \
 timeshift \

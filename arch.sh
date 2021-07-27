@@ -8,6 +8,16 @@ installer_dialog() {
     DIALOG_CODE=$?
 }
 
+installer_cancel() {
+if [[ $DIALOG_CODE -eq 1 ]]; then
+    installer_dialog --title "Cancelled" --msgbox "\nScript was cancelled at your request." 10 60
+    exit 0
+fi
+}
+
+install_disk=/dev/nvme0n1
+
+
 ################################################################################
 #### Welcome                                                                ####
 ################################################################################
@@ -19,34 +29,34 @@ installer_dialog --title "Welcome" --msgbox "\nWelcome to Meyvin's Arch Linux In
 ################################################################################
 installer_dialog --title "Hostname" --inputbox "\nPlease enter a hostname for this device.\n" 10 60
 hostname="$DIALOG_RESULT"
+installer_cancel
 
 ################################################################################
 #### User account Prompts                                                   ####
 ################################################################################
 installer_dialog --title "Root password" --passwordbox "\nEnter a strong password for the root user.\n" 10 60
 root_password="$DIALOG_RESULT"
+installer_cancel
 
 installer_dialog --title "username" --inputbox "\nPlease enter a username for your personal account.\n" 10 60
 user_name="$DIALOG_RESULT"
+installer_cancel
 
 installer_dialog --title "user password" --passwordbox "\nEnter a strong password for ${user_name}'s account.\n" 10 60
 user_password="$DIALOG_RESULT"
-
+installer_cancel
 ################################################################################
 #### Password prompts                                                       ####
 ################################################################################
 installer_dialog --title "Disk encryption" --passwordbox "\nEnter a strong passphrase for the disk encryption." 10 60
 encryption_passphrase="$DIALOG_RESULT"
-
+installer_cancel
 ################################################################################
 #### Warning                                                                ####
 ################################################################################
-installer_dialog --title "WARNING" --yesno "\nThis script will NUKE /dev/nvme0n1.\nPress <Enter> to continue or <Esc> to cancel.\n" 10 60
+installer_dialog --title "WARNING" --yesno "\nThis script will NUKE ${install_disk}.\nPress <Enter> to continue or <Esc> to cancel.\n" 10 60
 clear
-if [[ $DIALOG_CODE -eq 1 ]]; then
-    installer_dialog --title "Cancelled" --msgbox "\nScript was cancelled at your request." 10 60
-    exit 0
-fi
+installer_cancel
 
 ################################################################################
 #### reset the screen                                                       ####
@@ -57,25 +67,25 @@ reset
 #### Nuke and set up disk partitions                                        ####
 ################################################################################
 echo "Wiping disk"
-wipefs --all /dev/nvme0n1
+wipefs --all ${install_disk}
 
 echo "Creating GPT Partition Table"
-sgdisk /dev/nvme0n1 -o 
+sgdisk ${install_disk} -o 
 
 echo "Creating EFI Partition"
-sgdisk /dev/nvme0n1 -n 1::+512MiB -t 1:ef00
+sgdisk ${install_disk} -n 1::+512MiB -t 1:ef00
 
 echo "Creating Root partition"
-sgdisk /dev/nvme0n1 -n 2
+sgdisk ${install_disk} -n 2
 
 echo "Format EFI partition"
-mkfs.vfat /dev/nvme0n1p1
+mkfs.vfat ${install_disk}1
 
 if [[ ! -z $encryption_passphrase ]]; then
     echo "Setting up encryption"
-    printf "%s" "$encryption_passphrase" | cryptsetup luksFormat /dev/nvme0n1p2
-    printf "%s" "$encryption_passphrase" | cryptsetup luksOpen /dev/nvme0n1p2 archlinux
-    cryptdevice_boot_param="cryptdevice=/dev/nvme0n1p2"
+    printf "%s" "$encryption_passphrase" | cryptsetup luksFormat ${install_disk}2
+    printf "%s" "$encryption_passphrase" | cryptsetup luksOpen ${install_disk}2 archlinux
+    cryptdevice_boot_param="cryptdevice=${install_disk}2"
     encrypt_mkinitcpio_hook="encrypt"
     physical_volume="/dev/mapper/archlinux"
 else
@@ -98,7 +108,7 @@ mkdir /mnt/home && mkdir /mnt/var
 mount -o noatime,compress=zstd,space_cache,discard=async,subvol=@home $physical_volume /mnt/home
 mount -o noatime,compress=zstd,space_cache,discard=async,subvol=@var $physical_volume /mnt/var
 mkdir /mnt/boot
-mount /dev/nvme0n1p1 /mnt/boot
+mount ${install_disk}1 /mnt/boot
 
 yes '' | pacstrap -i /mnt base linux linux-firmware git vim amd-ucode btrfs-progs
 
@@ -195,7 +205,7 @@ EOF
 ################################################################################
 arch-chroot /mnt /bin/bash <<EOF
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
-sed -i 's|GRUB_CMDLINE_LINUX_DEFAULT="[^"]*|& '"cryptdevice=UUID=$(blkid -s UUID -o value /dev/nvme0n1p2):archlinux root=/dev/mapper/archlinux"'|' /etc/default/grub
+sed -i 's|GRUB_CMDLINE_LINUX_DEFAULT="[^"]*|& '"cryptdevice=UUID=$(blkid -s UUID -o value ${install_disk}2):archlinux root=/dev/mapper/archlinux"'|' /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 EOF
 
