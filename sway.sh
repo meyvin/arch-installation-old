@@ -29,7 +29,6 @@ sudo pacman -Syu
 
 echo "Installing Sway Desktop Environment"
 sudo pacman -S \
-adobe-base-14-fonts \
 alacritty \
 blueman \
 docker \
@@ -89,6 +88,7 @@ rm -rf ~/paru
 ################################################################################
 echo "Installing AUR packages"
 paru -S \
+adobe-base-14-fonts \
 ferdi-bin \
 gitflow-avh \
 intellij-idea-ultimate-edition \
