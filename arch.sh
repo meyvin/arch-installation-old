@@ -16,7 +16,9 @@ fi
 }
 
 install_disk=/dev/nvme0n1
-
+boot_partition=/dev/nvme0n1p1
+root_partition=/dev/nvme0n1p2
+encrypt_partition=/dev/mapper/archlinux
 
 ################################################################################
 #### Welcome                                                                ####
@@ -78,21 +80,21 @@ echo "Creating Root partition"
 sgdisk ${install_disk} -n 2
 
 echo "Format EFI partition"
-mkfs.vfat ${install_disk}1
+mkfs.vfat ${boot_partition}
 
 if [[ ! -z $encryption_passphrase ]]; then
     echo "Setting up encryption"
-    printf "%s" "$encryption_passphrase" | cryptsetup luksFormat ${install_disk}2
-    printf "%s" "$encryption_passphrase" | cryptsetup luksOpen ${install_disk}2 archlinux
-    cryptdevice_boot_param="cryptdevice=${install_disk}p2"
+    printf "%s" "$encryption_passphrase" | cryptsetup luksFormat ${root_partition}
+    printf "%s" "$encryption_passphrase" | cryptsetup luksOpen ${root_partition} archlinux
+    cryptdevice_boot_param="cryptdevice=${root_partition}"
     encrypt_mkinitcpio_hook="encrypt"
-    physical_volume="/dev/mapper/archlinux"
+    physical_volume="${encrypt_partition}"
 else
     exit 0
 fi
 
 echo "Setting up BTRFS"
-mkfs.btrfs /dev/mapper/archlinux
+mkfs.btrfs $physical_volume
 mount $physical_volume /mnt && cd /mnt
 btrfs subvolume create @
 btrfs subvolume create @home
@@ -107,7 +109,7 @@ mkdir /mnt/home && mkdir /mnt/var
 mount -o noatime,compress=zstd,space_cache,discard=async,subvol=@home $physical_volume /mnt/home
 mount -o noatime,compress=zstd,space_cache,discard=async,subvol=@var $physical_volume /mnt/var
 mkdir /mnt/boot
-mount ${install_disk}p1 /mnt/boot
+mount ${boot_partition} /mnt/boot
 
 yes '' | pacstrap -i /mnt base linux linux-firmware git vim amd-ucode btrfs-progs
 
@@ -126,6 +128,8 @@ echo "Setting time zone"
 ln -s /usr/share/zoneinfo/Europe/Amsterdam /etc/localtime
 echo "Setting hostname"
 echo $hostname > /etc/hostname
+echo "Disabling annoying pc speaker"
+echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
 sed -i '/localhost/s/$'"/ $hostname/" /etc/hosts
 echo "Generating initramfs"
 sed -i "s/^HOOKS.*/HOOKS=\(base udev autodetect modconf block keyboard ${encrypt_mkinitcpio_hook} filesystems keyboard fsck\)/" /etc/mkinitcpio.conf
@@ -204,7 +208,7 @@ EOF
 ################################################################################
 arch-chroot /mnt /bin/bash <<EOF
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
-sed -i 's|GRUB_CMDLINE_LINUX_DEFAULT="[^"]*|& '"cryptdevice=UUID=$(blkid -s UUID -o value ${install_disk}"p2"):archlinux root=/dev/mapper/archlinux"'|' /etc/default/grub
+sed -i 's|GRUB_CMDLINE_LINUX_DEFAULT="[^"]*|& '"cryptdevice=UUID=$(blkid -s UUID -o value ${root_partition}):archlinux root=${encrypt_partition}"'|' /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 EOF
 
