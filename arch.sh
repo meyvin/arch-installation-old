@@ -55,9 +55,8 @@ installer_cancel
 #### Warning                                                                ####
 ################################################################################
 installer_dialog --title "WARNING" --yesno "\nThis script will NUKE ${install_disk}.\nPress <Enter> to continue or <Esc> to cancel.\n" 10 60
-clear
 installer_cancel
-
+clear
 ################################################################################
 #### reset the screen                                                       ####
 ################################################################################
@@ -85,7 +84,7 @@ if [[ ! -z $encryption_passphrase ]]; then
     echo "Setting up encryption"
     printf "%s" "$encryption_passphrase" | cryptsetup luksFormat ${install_disk}2
     printf "%s" "$encryption_passphrase" | cryptsetup luksOpen ${install_disk}2 archlinux
-    cryptdevice_boot_param="cryptdevice=${install_disk}2"
+    cryptdevice_boot_param="cryptdevice=${install_disk}p2"
     encrypt_mkinitcpio_hook="encrypt"
     physical_volume="/dev/mapper/archlinux"
 else
@@ -108,7 +107,7 @@ mkdir /mnt/home && mkdir /mnt/var
 mount -o noatime,compress=zstd,space_cache,discard=async,subvol=@home $physical_volume /mnt/home
 mount -o noatime,compress=zstd,space_cache,discard=async,subvol=@var $physical_volume /mnt/var
 mkdir /mnt/boot
-mount ${install_disk}1 /mnt/boot
+mount ${install_disk}p1 /mnt/boot
 
 yes '' | pacstrap -i /mnt base linux linux-firmware git vim amd-ucode btrfs-progs
 
@@ -205,7 +204,7 @@ EOF
 ################################################################################
 arch-chroot /mnt /bin/bash <<EOF
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
-sed -i 's|GRUB_CMDLINE_LINUX_DEFAULT="[^"]*|& '"cryptdevice=UUID=$(blkid -s UUID -o value ${install_disk}2):archlinux root=/dev/mapper/archlinux"'|' /etc/default/grub
+sed -i 's|GRUB_CMDLINE_LINUX_DEFAULT="[^"]*|& '"cryptdevice=UUID=$(blkid -s UUID -o value ${install_disk}"p2"):archlinux root=/dev/mapper/archlinux"'|' /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 EOF
 
