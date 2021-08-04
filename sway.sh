@@ -149,12 +149,12 @@ cd ~;git clone --bare https://github.com/meyvin/dotfiles.git $HOME/.dotfiles
 #### ZSH & Dotfiles Configuration                                           ####
 ################################################################################
 echo "Installing ZSH-Snap plugin manager"
-git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git $HOME/zsh-snap
+mkdir ~/.zsh-plugins
+git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git $HOME/.zsh-plugins/zsh-snap
 
 echo "Switch to and set ZSH as default"
 chsh -s /usr/bin/zsh
 zsh
-source ~/zsh-snap/znap.zsh
 
 echo "Reboot and start Sway in:"
 echo -e "\e[1;32m5..4..3..2..1..\e[0m"
