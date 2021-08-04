@@ -108,7 +108,8 @@ ttf-font-awesome \
 ttf-material-design-icons-desktop-git \
 visual-studio-code-bin \
 waybar \
-wofi
+wofi \
+yadm-git
 
 ################################################################################
 #### Timeshift Grub-BTRFS                                                   ####
@@ -141,9 +142,7 @@ gsettings set org.gnome.desktop.interface icon-theme 'Tela-blue-dark'
 #### Installing Dotfiles                                                    ####
 ################################################################################
 echo "Installing Dotfiles"
-cd ~;git clone --bare https://github.com/meyvin/dotfiles.git $HOME/.dotfiles
-/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout sway
-/usr/bin/git config status.showUntrackedFiles no
+cd ~;yadm clone https://github.com/meyvin/dotfiles.git
 
 ################################################################################
 #### ZSH & Dotfiles Configuration                                           ####
