@@ -66,6 +66,7 @@ virtualbox \
 virtualbox-host-modules-arch \
 vlc \
 vulkan-radeon \
+wf-recorder \
 wget \
 xf86-video-amdgpu \
 xorg-xwayland \
