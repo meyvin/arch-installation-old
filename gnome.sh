@@ -20,8 +20,6 @@ vlc \
 wget \
 zsh
 
-
-
 ################################################################################
 #### Firwall                                                                ####
 ################################################################################
@@ -48,6 +46,8 @@ adobe-base-14-fonts \
 chrome-gnome-shell \
 ferdi-bin \
 gitflow-avh \
+gnome-shell-extension-arc-menu \
+gnome-shell-extension-dash-to-panel-git \
 intellij-idea-ultimate-edition \
 intellij-idea-ultimate-edition-jre \
 nerd-fonts-complete \
@@ -64,21 +64,11 @@ yadm-git
 #### Flatpak packages                                                       ####
 ################################################################################
 echo "Install Flatpak software"
-sudo flatpak install -y Extensions
+sudo flatpak install -y org.gnome.Extensions
 
-gnome-extensions install user-theme@gnome-shell-extensions.gcampax.github.com
-gnome-extensions install dash-to-panel@jderose9.github.com
-gnome-extensions install arcmenu@arcmenu.com
-gnome-extensions install apps-menu@gnome-shell-extensions.gcampax.github.com
-gnome-extensions install auto-move-windows@gnome-shell-extensions.gcampax.github.com
-gnome-extensions install drive-menu@gnome-shell-extensions.gcampax.github.com
-gnome-extensions install launch-new-instance@gnome-shell-extensions.gcampax.github.com
-gnome-extensions install native-window-placement@gnome-shell-extensions.gcampax.github.com
-gnome-extensions install places-menu@gnome-shell-extensions.gcampax.github.com
-gnome-extensions install screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com
-gnome-extensions install window-list@gnome-shell-extensions.gcampax.github.com
-gnome-extensions install windowsNavigator@gnome-shell-extensions.gcampax.github.com
-gnome-extensions install workspace-indicator@gnome-shell-extensions.gcampax.github.com
+################################################################################
+#### Gnome extensions                                                       ####
+################################################################################
 
 gnome-extensions disable apps-menu@gnome-shell-extensions.gcampax.github.com
 gnome-extensions disable drive-menu@gnome-shell-extensions.gcampax.github.com
@@ -127,7 +117,6 @@ git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git $HOME/.zsh-
 
 echo "Switch to and set ZSH as default"
 chsh -s /usr/bin/zsh
-zsh
 
 echo "Reboot and start Gnome in:"
 echo -e "\e[1;32m5..4..3..2..1..\e[0m"
