@@ -154,6 +154,8 @@ genfstab -U /mnt >> /mnt/etc/fstab
 ################################################################################
 #### Configure base system                                                  ####
 ################################################################################
+kernel_version=$( ls /mnt/usr/lib/modules )
+
 arch-chroot /mnt /bin/bash <<EOF
 echo "Setting and generating locale"
 echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
@@ -173,7 +175,7 @@ echo "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
 
 echo "Generating initramfs"
 sed -i "s/^HOOKS.*/HOOKS=\(base udev autodetect modconf block keyboard ${mkinitcpio_hooks} filesystems keyboard fsck\)/" /etc/mkinitcpio.conf
-kernel_version=$( ls /usr/lib/modules )
+
 mkinitcpio -g /boot/initramfs-linux.img -k $kernel_version
 
 echo "Setting root password"
@@ -220,6 +222,7 @@ dnsmasq \
 dnsutils \
 dosfstools \
 ebtables \
+efibootmgr \
 firewalld \
 flatpak \
 $gpu_drivers \
@@ -254,17 +257,17 @@ xdg-utils \
 arch-chroot /mnt /bin/bash <<EOF
 mirror_country="Netherlands"
 
-sudo timedatectl set-ntp true
-sudo hwclock --systohc
+timedatectl set-ntp true
+hwclock --systohc
 
 systemctl enable NetworkManager 
 systemctl enable bluetooth
 systemctl enable cups.service
 systemctl enable sshd
 systemctl enable avahi-daemon
-systemctl enable reflector.timer
+systemctl enable --now reflector.timer
 systemctl enable fstrim.timer
-systemctl enable firewalld
+systemctl enable --now firewalld
 systemctl enable acpid
 
 echo "Retrieve and filter the latest Pacman mirror list for ${mirror_country}"
@@ -282,9 +285,14 @@ echo "${user_name} ALL=(ALL) ALL" >> /etc/sudoers.d/${user_name}
 EOF
 
 ################################################################################
+#### EFIStub                                                                ####
+################################################################################
+efibootmgr --disk ${root_partition} --part Y --create --label "Arch Linux" --loader /vmlinuz-linux --unicode "cryptdevice=${root_partition}:archlinux:allow-discards root=/dev/vg1/root rw initrd=\${cpu_ucode}.img initrd=\initramfs-linux.img" --verbose
+
+################################################################################
 #### The end                                                                ####
 ################################################################################
 echo "Done installing a Basic Arch System.\n Let's reboot the system and configure the efistub!"
 echo -e "\e[1;32mRebooting IN 5..4..3..2..1..\e[0m"
 sleep 5
-sudo reboot
+reboot
