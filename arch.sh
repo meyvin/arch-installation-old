@@ -270,14 +270,6 @@ systemctl enable fstrim.timer
 systemctl enable --now firewalld
 systemctl enable acpid
 
-echo "Retrieve and filter the latest Pacman mirror list for ${mirror_country}"
-reflector -c $mirror_country -a 12 --sort rate --save /etc/pacman.d/mirrorlist
-
-echo "Setting up Firewall"
-firewall-cmd --add-port=1025-65535/tcp --permanent
-firewall-cmd --add-port=1025-65535/udp --permanent
-firewall-cmd --reload
-
 echo "Setting up ${user_name} account"
 useradd -m ${user_name}
 echo "${user_name}:${user_password}" | chpasswd
@@ -287,7 +279,7 @@ EOF
 ################################################################################
 #### EFIStub                                                                ####
 ################################################################################
-efibootmgr --disk ${root_partition} --part Y --create --label "Arch Linux" --loader /vmlinuz-linux --unicode "cryptdevice=${root_partition}:archlinux:allow-discards root=/dev/vg1/root rw initrd=\${cpu_ucode}.img initrd=\initramfs-linux.img" --verbose
+efibootmgr --disk ${root_partition} --create --label "Arch Linux" --loader /vmlinuz-linux --unicode "cryptdevice=${root_partition}:archlinux:allow-discards root=/dev/vg1/root rw initrd=\\${cpu_ucode}.img initrd=\initramfs-linux.img" --verbose
 
 ################################################################################
 #### The end                                                                ####

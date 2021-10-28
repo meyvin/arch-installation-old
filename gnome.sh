@@ -3,6 +3,9 @@
 ################################################################################
 #### Gnome                                                                  ####
 ################################################################################
+echo "Retrieve and filter the latest Pacman mirror list for ${mirror_country}"
+reflector -c $mirror_country -a 12 --sort rate --save /etc/pacman.d/mirrorlist
+
 echo "Installing Gnome Desktop Environment"
 sudo pacman -S \
 docker \
@@ -16,6 +19,16 @@ unrar \
 vlc \
 wget \
 zsh
+
+
+
+################################################################################
+#### Firwall                                                                ####
+################################################################################
+echo "Setting up Firewall"
+firewall-cmd --add-port=1025-65535/tcp --permanent
+firewall-cmd --add-port=1025-65535/udp --permanent
+firewall-cmd --reload
 
 ################################################################################
 #### Paru aur package manager installation                                  ####
