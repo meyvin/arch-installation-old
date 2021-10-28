@@ -66,21 +66,21 @@ installer_cancel
 ################################################################################
 #### Processor                                                              ####
 ################################################################################
-installer_dialog --title "Select cpu manufacturer" --menu "\nChoose an option\n" 18 100 10 "amd-ucode" "- AMD Processor" "intel-ucode" "- Intel Processor"		
+installer_dialog --title "Select cpu manufacturer" --menu "\nChoose an option\n" 18 100 10 "amd-ucode" "AMD Processor" "intel-ucode" "Intel Processor"		
 cpu_ucode="$DIALOG_RESULT"
 installer_cancel
 
 ################################################################################
 #### Graphics                                                               ####
 ################################################################################
-installer_dialog --title "Select gpu manufacturer" --menu "\nChoose an option\n" 18 100 10 "AMD" " " "Intel" " "	"Nvidia" " "	
+installer_dialog --title "Select gpu manufacturer" --menu "\nChoose an option\n" 18 100 10 "AMD" "" "Intel" "" "Nvidia" ""	
 gpu_manufacturer="$DIALOG_RESULT"
 installer_cancel
 
 ################################################################################
 #### Swap size                                                              ####
 ################################################################################
-installer_dialog --title "Swap partition size?" --menu "\nChoose an option\n" 18 100 10 "8G" " " "16G" " "	"32G" " "	
+installer_dialog --title "Swap partition size?" --menu "\nChoose an option\n" 18 100 10 "8G" "" "16G" "" "32G" ""	
 swap_size="$DIALOG_RESULT"
 installer_cancel
 
@@ -180,9 +180,9 @@ echo "Setting root password"
 echo "root:${root_password}" | chpasswd
 
 echo "Enable Colors, Parallel Downloads and Multilib in /etc/pacman.conf"
-sudo sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
-sudo sed -i '/Color/s/^#//g' /etc/pacman.conf
-sudo sed -i '/ParallelDownloads/s/^#//g' /etc/pacman.conf
+sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
+sed -i '/Color/s/^#//g' /etc/pacman.conf
+sed -i '/ParallelDownloads/s/^#//g' /etc/pacman.conf
 
 echo "Updating pacman"
 pacman -Syuu
@@ -268,12 +268,12 @@ systemctl enable firewalld
 systemctl enable acpid
 
 echo "Retrieve and filter the latest Pacman mirror list for ${mirror_country}"
-sudo reflector -c $mirror_country -a 12 --sort rate --save /etc/pacman.d/mirrorlist
+reflector -c $mirror_country -a 12 --sort rate --save /etc/pacman.d/mirrorlist
 
 echo "Setting up Firewall"
-sudo firewall-cmd --add-port=1025-65535/tcp --permanent
-sudo firewall-cmd --add-port=1025-65535/udp --permanent
-sudo firewall-cmd --reload
+firewall-cmd --add-port=1025-65535/tcp --permanent
+firewall-cmd --add-port=1025-65535/udp --permanent
+firewall-cmd --reload
 
 echo "Setting up ${user_name} account"
 useradd -m ${user_name}
