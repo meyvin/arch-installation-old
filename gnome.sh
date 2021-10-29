@@ -3,6 +3,8 @@
 ################################################################################
 #### Gnome                                                                  ####
 ################################################################################
+mirror_country="Netherlands"
+
 echo "Retrieve and filter the latest Pacman mirror list for ${mirror_country}"
 reflector -c $mirror_country -a 12 --sort rate --save /etc/pacman.d/mirrorlist
 

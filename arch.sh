@@ -255,7 +255,6 @@ xdg-user-dirs \
 xdg-utils \
 
 arch-chroot /mnt /bin/bash <<EOF
-mirror_country="Netherlands"
 
 timedatectl set-ntp true
 hwclock --systohc
