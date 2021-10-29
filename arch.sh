@@ -80,7 +80,7 @@ installer_cancel
 ################################################################################
 #### Swap size                                                              ####
 ################################################################################
-installer_dialog --title "Swap partition size?" --menu "\nChoose an option\n" 18 100 10 "8G" "" "16G" "" "32G" ""	
+installer_dialog --title "Swap partition size" --menu "\nChoose an option\n" 18 100 10 "8G" "" "16G" "" "32G" ""	
 swap_size="$DIALOG_RESULT"
 installer_cancel
 
@@ -147,7 +147,7 @@ mkdir /mnt/boot
 mount ${boot_partition} /mnt/boot
 swapon /dev/vg1/swap
 
-yes '' | pacstrap -i /mnt base linux linux-firmware git vim $cpu_ucode btrfs-progs
+yes '' | pacstrap -i /mnt base linux linux-firmware git vim $cpu_ucode lvm2
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
@@ -191,7 +191,7 @@ pacman -Syuu
 EOF
 
 ################################################################################
-#### Graphic driver variabele                                               ####
+#### GPU Drivers                                                            ####
 ################################################################################
 case $gpu_manufacturer in
 	AMD)	
@@ -265,9 +265,9 @@ systemctl enable bluetooth
 systemctl enable cups.service
 systemctl enable sshd
 systemctl enable avahi-daemon
-systemctl enable --now reflector.timer
+systemctl enable reflector.timer
 systemctl enable fstrim.timer
-systemctl enable --now firewalld
+systemctl enable firewalld
 systemctl enable acpid
 
 echo "Setting up ${user_name} account"
@@ -284,7 +284,7 @@ efibootmgr --disk ${root_partition} --create --label "Arch Linux" --loader /vmli
 ################################################################################
 #### The end                                                                ####
 ################################################################################
-echo "Done installing a Basic Arch System.\n Let's reboot the system and configure the efistub!"
+echo "Done installing a Basic Arch System."
 echo -e "\e[1;32mRebooting IN 5..4..3..2..1..\e[0m"
 sleep 5
 reboot
