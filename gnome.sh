@@ -50,6 +50,7 @@ ferdi-bin \
 gitflow-avh \
 gnome-shell-extension-arc-menu \
 gnome-shell-extension-dash-to-panel-git \
+gnome-shell-extension-ddterm
 intellij-idea-ultimate-edition \
 intellij-idea-ultimate-edition-jre \
 nerd-fonts-complete \
@@ -84,6 +85,7 @@ gnome-extensions disable workspace-indicator@gnome-shell-extensions.gcampax.gith
 
 gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
 gnome-extensions enable dash-to-panel@jderose9.github.com
+gnome-extensions enable ddterm@amezin.github.com
 gnome-extensions enable arcmenu@arcmenu.com
 gnome-extensions enable auto-move-windows@gnome-shell-extensions.gcampax.github.com
 
@@ -107,7 +109,13 @@ echo "Enabling Gnome theme, icons, wallpaper and gdm"
 gsettings set org.gnome.desktop.interface gtk-theme 'Nordic'
 gsettings set org.gnome.desktop.interface icon-theme 'Tela-blue-dark'
 gsettings set org.gnome.mutter overlay-key ''
+gsettings set org.gnome.shell.keybindings switch-to-application-5 '[]'
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-5 '["<Super>5"]'
 gsettings set org.gnome.desktop.background picture-uri ~/wallpaper.png
+
+git clone https://github.com/arcticicestudio/nord-gnome-terminal.git /tmp/nord-gnome-terminal
+/tmp/nord-gnome-terminal/src/nord.sh
+
 sudo systemctl enable gdm.service
 
 ################################################################################
