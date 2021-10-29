@@ -50,7 +50,7 @@ ferdi-bin \
 gitflow-avh \
 gnome-shell-extension-arc-menu \
 gnome-shell-extension-dash-to-panel-git \
-gnome-shell-extension-ddterm
+gnome-shell-extension-ddterm \ 
 intellij-idea-ultimate-edition \
 intellij-idea-ultimate-edition-jre \
 nerd-fonts-complete \
