@@ -36,18 +36,7 @@ docker-compose \
 file-roller \
 firefox-developer-edition \
 gammastep \
-grub-btrfs \
 jq \
-lib32-libva-mesa-driver \
-lib32-mesa \
-lib32-mesa-vdpau \
-lib32-vulkan-radeon \
-libreoffice-fresh \
-libreoffice-fresh-nl \
-libva-mesa-driver \
-nautilus \
-mesa \
-mesa-vdpau \
 playerctl \
 qt5-wayland \
 qt6-wayland \
@@ -62,13 +51,9 @@ thunar-media-tags-plugin \
 thunar-volman \
 thunderbird \
 unrar \
-virtualbox \
-virtualbox-host-modules-arch \
 vlc \
-vulkan-radeon \
 wf-recorder \
 wget \
-xf86-video-amdgpu \
 xorg-xwayland \
 zathura \
 zathura-cb \
@@ -90,6 +75,7 @@ rm -rf ~/paru
 echo "Installing AUR packages"
 paru -S \
 adobe-base-14-fonts \
+clipman \
 ferdi-bin \
 gitflow-avh \
 intellij-idea-ultimate-edition \
@@ -100,6 +86,7 @@ nordic-theme \
 otf-monaco-powerline-font-git \
 postman-bin \
 siji \
+spotify \
 swappy \
 sxiv \
 tela-icon-theme \
@@ -110,20 +97,8 @@ ttf-material-design-icons-desktop-git \
 visual-studio-code-bin \
 waybar \
 wofi \
+wps-office \
 yadm-git
-
-################################################################################
-#### Timeshift Grub-BTRFS                                                   ####
-################################################################################
-sudo timeshift --create
-sudo pacman -S grub-btrfs
-sudo grub-mkconfig -o /boot/grub/grub.cfg
-
-################################################################################
-#### Flatpak packages                                                       ####
-################################################################################
-echo "Install Flatpak software"
-sudo flatpak install -y spotify
 
 ################################################################################
 #### Enabling Docker                                                        ####
