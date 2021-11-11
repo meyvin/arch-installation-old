@@ -51,7 +51,6 @@ thunar-media-tags-plugin \
 thunar-volman \
 thunderbird \
 unrar \
-vlc \
 wf-recorder \
 wget \
 xorg-xwayland \
@@ -75,11 +74,14 @@ rm -rf ~/paru
 echo "Installing AUR packages"
 paru -S \
 adobe-base-14-fonts \
+celluloid \
 clipman \
 ferdi-bin \
 gitflow-avh \
+grim \
 intellij-idea-ultimate-edition \
 intellij-idea-ultimate-edition-jre \
+kanshi \
 mako-git \
 nerd-fonts-complete \
 nordic-theme \
@@ -129,7 +131,6 @@ git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git $HOME/.zsh-
 
 echo "Switch to and set ZSH as default"
 chsh -s /usr/bin/zsh
-zsh
 
 echo "Reboot and start Sway in:"
 echo -e "\e[1;32m5..4..3..2..1..\e[0m"
