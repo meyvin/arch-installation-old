@@ -35,7 +35,7 @@ docker \
 docker-compose \
 file-roller \
 firefox-developer-edition \
-gammastep \
+gnome-calculator \
 jq \
 playerctl \
 qt5-wayland \
@@ -44,7 +44,6 @@ smbclient \
 slurp \
 sway \
 swayidle \
-swaylock \
 thunar \
 thunar-archive-plugin \
 thunar-media-tags-plugin \
@@ -77,11 +76,13 @@ adobe-base-14-fonts \
 celluloid \
 clipman \
 ferdi-bin \
+gammastep \
 gitflow-avh \
 grim \
 intellij-idea-ultimate-edition \
 intellij-idea-ultimate-edition-jre \
 kanshi \
+ly \
 mako-git \
 nerd-fonts-complete \
 nordic-theme \
@@ -90,6 +91,7 @@ postman-bin \
 siji \
 spotify \
 swappy \
+swaylock-effects \
 sxiv \
 tela-icon-theme \
 timeshift \
@@ -121,6 +123,12 @@ gsettings set org.gnome.desktop.interface icon-theme 'Tela-blue-dark'
 ################################################################################
 echo "Installing Dotfiles"
 cd ~;yadm clone https://github.com/meyvin/dotfiles.git
+
+################################################################################
+#### Enable systemd services                                                ####
+################################################################################
+sudo systemctl enable ly.service
+systemctl enable --user kanshi
 
 ################################################################################
 #### ZSH & Dotfiles Configuration                                           ####
