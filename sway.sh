@@ -35,20 +35,8 @@ docker \
 docker-compose \
 file-roller \
 firefox-developer-edition \
-gammastep \
-grim \
-grub-btrfs \
+gnome-calculator \
 jq \
-lib32-libva-mesa-driver \
-lib32-mesa \
-lib32-mesa-vdpau \
-lib32-vulkan-radeon \
-libreoffice-fresh \
-libreoffice-fresh-nl \
-libva-mesa-driver \
-nautilus \
-mesa \
-mesa-vdpau \
 playerctl \
 polkit-gnome \
 qt5-wayland \
@@ -57,20 +45,14 @@ smbclient \
 slurp \
 sway \
 swayidle \
-swaylock \
 thunar \
 thunar-archive-plugin \
 thunar-media-tags-plugin \
 thunar-volman \
 thunderbird \
 unrar \
-virtualbox \
-virtualbox-host-modules-arch \
-vlc \
-vulkan-radeon \
 wf-recorder \
 wget \
-xf86-video-amdgpu \
 xorg-xwayland \
 zathura \
 zathura-cb \
@@ -92,17 +74,25 @@ rm -rf ~/paru
 echo "Installing AUR packages"
 paru -S \
 adobe-base-14-fonts \
+celluloid \
+clipman \
 ferdi-bin \
+gammastep \
 gitflow-avh \
+grim \
 intellij-idea-ultimate-edition \
 intellij-idea-ultimate-edition-jre \
+kanshi \
+ly \
 mako-git \
 nerd-fonts-complete \
 nordic-theme \
 otf-monaco-powerline-font-git \
 postman-bin \
 siji \
+spotify \
 swappy \
+swaylock-effects \
 sxiv \
 tela-icon-theme \
 timeshift \
@@ -112,20 +102,8 @@ ttf-material-design-icons-desktop-git \
 visual-studio-code-bin \
 waybar \
 wofi \
+wps-office \
 yadm-git
-
-################################################################################
-#### Timeshift Grub-BTRFS                                                   ####
-################################################################################
-sudo timeshift --create
-sudo pacman -S grub-btrfs
-sudo grub-mkconfig -o /boot/grub/grub.cfg
-
-################################################################################
-#### Flatpak packages                                                       ####
-################################################################################
-echo "Install Flatpak software"
-sudo flatpak install -y spotify
 
 ################################################################################
 #### Enabling Docker                                                        ####
@@ -148,6 +126,12 @@ echo "Installing Dotfiles"
 cd ~;yadm clone https://github.com/meyvin/dotfiles.git
 
 ################################################################################
+#### Enable systemd services                                                ####
+################################################################################
+sudo systemctl enable ly.service
+systemctl enable --user kanshi
+
+################################################################################
 #### ZSH & Dotfiles Configuration                                           ####
 ################################################################################
 echo "Installing ZSH-Snap plugin manager"
@@ -156,7 +140,6 @@ git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git $HOME/.zsh-
 
 echo "Switch to and set ZSH as default"
 chsh -s /usr/bin/zsh
-zsh
 
 echo "Reboot and start Sway in:"
 echo -e "\e[1;32m5..4..3..2..1..\e[0m"
