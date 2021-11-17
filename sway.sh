@@ -36,6 +36,7 @@ docker-compose \
 file-roller \
 firefox-developer-edition \
 gammastep \
+grim \
 grub-btrfs \
 jq \
 lib32-libva-mesa-driver \
@@ -49,6 +50,7 @@ nautilus \
 mesa \
 mesa-vdpau \
 playerctl \
+polkit-gnome \
 qt5-wayland \
 qt6-wayland \
 smbclient \
