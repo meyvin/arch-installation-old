@@ -88,6 +88,7 @@ mako-git \
 nerd-fonts-complete \
 nordic-theme \
 otf-monaco-powerline-font-git \
+otf-font-awesome \
 postman-bin \
 siji \
 spotify \
@@ -97,7 +98,6 @@ sxiv \
 tela-icon-theme \
 timeshift \
 timeshift-autosnap \
-ttf-font-awesome \
 ttf-material-design-icons-desktop-git \
 visual-studio-code-bin \
 waybar \
