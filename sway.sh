@@ -74,6 +74,7 @@ rm -rf ~/paru
 echo "Installing AUR packages"
 paru -S \
 adobe-base-14-fonts \
+bibata-cursor-theme \
 celluloid \
 clipman \
 ferdi-bin \
@@ -96,8 +97,7 @@ swappy \
 swaylock-effects \
 sxiv \
 tela-icon-theme \
-timeshift \
-timeshift-autosnap \
+
 ttf-material-design-icons-desktop-git \
 visual-studio-code-bin \
 waybar \
