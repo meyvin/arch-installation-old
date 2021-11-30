@@ -44,6 +44,7 @@ qt6-wayland \
 smbclient \
 slurp \
 sway \
+sway-audio-idle-inhibit-git \
 swayidle \
 thunar \
 thunar-archive-plugin \
@@ -79,25 +80,25 @@ celluloid \
 clipman \
 ferdi-bin \
 gammastep \
+gedit \
+gedit-plugins \
 gitflow-avh \
 grim \
 intellij-idea-ultimate-edition \
 intellij-idea-ultimate-edition-jre \
 kanshi \
-ly \
 mako-git \
 nerd-fonts-complete \
-nordic-theme \
 otf-monaco-powerline-font-git \
 otf-font-awesome \
 postman-bin \
 siji \
+skeuos-gtk-theme-git \
 spotify \
 swappy \
 swaylock-effects \
 sxiv \
 tela-icon-theme \
-
 ttf-material-design-icons-desktop-git \
 visual-studio-code-bin \
 waybar \
@@ -116,8 +117,8 @@ sudo usermod -aG docker $USER
 #### Gnome Theming                                                          ####
 ################################################################################
 echo "Enabling Gnome theme and icons"
-gsettings set org.gnome.desktop.interface gtk-theme 'Nordic'
-gsettings set org.gnome.desktop.interface icon-theme 'Tela-blue-dark'
+gsettings set org.gnome.desktop.interface gtk-theme 'Skeuos-Cyan-Dark'
+gsettings set org.gnome.desktop.interface icon-theme 'Tela-pink-dark'
 
 ################################################################################
 #### Installing Dotfiles                                                    ####
