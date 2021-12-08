@@ -35,6 +35,8 @@ docker \
 docker-compose \
 file-roller \
 firefox-developer-edition \
+gedit \
+gedit-plugins \
 gnome-calculator \
 jq \
 playerctl \
@@ -51,6 +53,7 @@ thunar-archive-plugin \
 thunar-media-tags-plugin \
 thunar-volman \
 thunderbird \
+tumbler \
 unrar \
 wf-recorder \
 wget \
@@ -75,13 +78,11 @@ rm -rf ~/paru
 echo "Installing AUR packages"
 paru -S \
 adobe-base-14-fonts \
-bibata-cursor-theme \
+arc-solid-gtk-theme-git \
 celluloid \
 clipman \
 ferdi-bin \
 gammastep \
-gedit \
-gedit-plugins \
 gitflow-avh \
 grim \
 intellij-idea-ultimate-edition \
@@ -89,11 +90,11 @@ intellij-idea-ultimate-edition-jre \
 kanshi \
 mako-git \
 nerd-fonts-complete \
+nnn-nerd \
 otf-monaco-powerline-font-git \
 otf-font-awesome \
 postman-bin \
 siji \
-skeuos-gtk-theme-git \
 spotify \
 swappy \
 swaylock-effects \
@@ -104,7 +105,9 @@ visual-studio-code-bin \
 waybar \
 wofi \
 wps-office \
-yadm-git
+xcursor-simp1e \
+yadm-git \
+zramd \
 
 ################################################################################
 #### Enabling Docker                                                        ####
@@ -114,11 +117,16 @@ sudo systemctl enable docker.service
 sudo usermod -aG docker $USER
 
 ################################################################################
+#### Enabling Zram                                                          ####
+################################################################################
+sudo sed -i '/MAX_SIZE/s/^# //g' /etc/default/zramd
+
+################################################################################
 #### Gnome Theming                                                          ####
 ################################################################################
 echo "Enabling Gnome theme and icons"
-gsettings set org.gnome.desktop.interface gtk-theme 'Skeuos-Cyan-Dark'
-gsettings set org.gnome.desktop.interface icon-theme 'Tela-pink-dark'
+gsettings set org.gnome.desktop.interface gtk-theme 'Ark-Dark-solid'
+gsettings set org.gnome.desktop.interface icon-theme 'Tela-dark'
 
 ################################################################################
 #### Installing Dotfiles                                                    ####
@@ -129,8 +137,8 @@ cd ~;yadm clone https://github.com/meyvin/dotfiles.git
 ################################################################################
 #### Enable systemd services                                                ####
 ################################################################################
-sudo systemctl enable ly.service
-systemctl enable --user kanshi
+sudo systemctl enable --user kanshi
+sudo systemctl enable zramd
 
 ################################################################################
 #### ZSH & Dotfiles Configuration                                           ####

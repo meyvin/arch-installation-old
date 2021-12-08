@@ -77,13 +77,6 @@ installer_dialog --title "Select gpu manufacturer" --menu "\nChoose an option\n"
 gpu_manufacturer="$DIALOG_RESULT"
 installer_cancel
 
-################################################################################
-#### Swap size                                                              ####
-################################################################################
-installer_dialog --title "Swap partition size" --menu "\nChoose an option\n" 18 100 10 "8G" "" "16G" "" "32G" ""	
-swap_size="$DIALOG_RESULT"
-installer_cancel
-
 
 ################################################################################
 #### Warning                                                                ####
@@ -128,7 +121,6 @@ fi
 echo "Setting up LVM"
 vgcreate vg1 $lvm_volume
 lvcreate -L 60G vg1 -n root
-lvcreate -L $swap_size vg1 -n swap
 lvcreate -l 100%FREE vg1 -n home
 
 echo "Creating filesystems and enabling swap"
