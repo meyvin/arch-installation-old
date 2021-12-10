@@ -78,7 +78,7 @@ rm -rf ~/paru
 echo "Installing AUR packages"
 paru -S \
 adobe-base-14-fonts \
-arc-solid-gtk-theme-git \
+arc-gtk-theme-git \
 celluloid \
 clipman \
 ferdi-bin \
