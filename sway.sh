@@ -38,6 +38,7 @@ firefox-developer-edition \
 gedit \
 gedit-plugins \
 gnome-calculator \
+gnome-keyring \
 jq \
 playerctl \
 polkit-gnome \
@@ -46,7 +47,6 @@ qt6-wayland \
 smbclient \
 slurp \
 sway \
-sway-audio-idle-inhibit-git \
 swayidle \
 thunar \
 thunar-archive-plugin \
@@ -97,6 +97,7 @@ postman-bin \
 siji \
 spotify \
 swappy \
+sway-audio-idle-inhibit-git \
 swaylock-effects \
 sxiv \
 tela-icon-theme \
