@@ -38,6 +38,7 @@ firefox-developer-edition \
 gedit \
 gedit-plugins \
 gnome-calculator \
+gnome-keyring \
 jq \
 playerctl \
 polkit-gnome \
@@ -77,7 +78,7 @@ rm -rf ~/paru
 echo "Installing AUR packages"
 paru -S \
 adobe-base-14-fonts \
-arc-solid-gtk-theme-git \
+arc-gtk-theme-git \
 celluloid \
 clipman \
 gammastep \
