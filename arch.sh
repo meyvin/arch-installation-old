@@ -137,7 +137,6 @@ mkdir /mnt/home
 mount /dev/vg1/home /mnt/home
 mkdir /mnt/boot
 mount ${boot_partition} /mnt/boot
-swapon /dev/vg1/swap
 
 yes '' | pacstrap -i /mnt base linux linux-firmware git vim $cpu_ucode lvm2
 

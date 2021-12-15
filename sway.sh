@@ -46,7 +46,6 @@ qt6-wayland \
 smbclient \
 slurp \
 sway \
-sway-audio-idle-inhibit-git \
 swayidle \
 thunar \
 thunar-archive-plugin \
@@ -81,7 +80,6 @@ adobe-base-14-fonts \
 arc-solid-gtk-theme-git \
 celluloid \
 clipman \
-ferdi-bin \
 gammastep \
 gitflow-avh \
 grim \
@@ -94,9 +92,11 @@ nnn-nerd \
 otf-monaco-powerline-font-git \
 otf-font-awesome \
 postman-bin \
+rambox-bin \
 siji \
 spotify \
 swappy \
+sway-audio-idle-inhibit-git \
 swaylock-effects \
 sxiv \
 tela-icon-theme \
@@ -146,6 +146,13 @@ sudo systemctl enable zramd
 echo "Installing ZSH-Snap plugin manager"
 mkdir ~/.zsh-plugins
 git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git $HOME/.zsh-plugins/zsh-snap
+
+echo "Installing Docker ZSH auto completion"
+mkdir -p ~/.zsh-plugins/docker-completion
+
+curl \
+	-L https://raw.githubusercontent.com/docker/compose/1.29.2/contrib/completion/zsh/_docker-compose \
+	-o ~/.zsh-plugins/docker-completion/_docker-compose
 
 echo "Switch to and set ZSH as default"
 chsh -s /usr/bin/zsh
