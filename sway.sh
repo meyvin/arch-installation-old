@@ -29,12 +29,12 @@ sudo pacman -Syu
 
 echo "Installing Sway Desktop Environment"
 sudo pacman -S \
-alacritty \
 blueman \
 docker \
 docker-compose \
 file-roller \
 firefox-developer-edition \
+foot \
 gedit \
 gedit-plugins \
 gnome-calculator \
