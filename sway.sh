@@ -81,7 +81,6 @@ adobe-base-14-fonts \
 arc-gtk-theme-git \
 celluloid \
 clipman \
-gammastep \
 gitflow-avh \
 grim \
 intellij-idea-ultimate-edition \
@@ -108,7 +107,7 @@ wofi \
 wps-office \
 xcursor-simp1e \
 yadm-git \
-zramd \
+zramd
 
 ################################################################################
 #### Enabling Docker                                                        ####
@@ -144,17 +143,6 @@ sudo systemctl enable zramd
 ################################################################################
 #### ZSH & Dotfiles Configuration                                           ####
 ################################################################################
-echo "Installing ZSH-Snap plugin manager"
-mkdir ~/.zsh-plugins
-git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git $HOME/.zsh-plugins/zsh-snap
-
-echo "Installing Docker ZSH auto completion"
-mkdir -p ~/.zsh-plugins/docker-completion
-
-curl \
-	-L https://raw.githubusercontent.com/docker/compose/1.29.2/contrib/completion/zsh/_docker-compose \
-	-o ~/.zsh-plugins/docker-completion/_docker-compose
-
 echo "Switch to and set ZSH as default"
 chsh -s /usr/bin/zsh
 
