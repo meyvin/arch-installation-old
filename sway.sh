@@ -8,9 +8,6 @@ MIRRORCOUNTRY="Netherlands"
 sudo timedatectl set-ntp true
 sudo hwclock --systohc
 
-echo "Retrieve and filter the latest Pacman mirror list for ${MIRRORCOUNTRY}"
-sudo reflector -c $MIRRORCOUNTRY -a 12 --sort rate --save /etc/pacman.d/mirrorlist
-
 echo "Setting up Firewall"
 sudo firewall-cmd --add-port=1025-65535/tcp --permanent
 sudo firewall-cmd --add-port=1025-65535/udp --permanent

@@ -234,7 +234,6 @@ pipewire \
 pipewire-alsa \
 pipewire-jack \
 pipewire-pulse \
-reflector \
 rsync \
 smbclient \
 sof-firmware \
@@ -254,7 +253,6 @@ systemctl enable bluetooth
 systemctl enable cups.service
 systemctl enable sshd
 systemctl enable avahi-daemon
-systemctl enable reflector.timer
 systemctl enable fstrim.timer
 systemctl enable firewalld
 systemctl enable acpid
