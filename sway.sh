@@ -101,7 +101,6 @@ ttf-material-design-icons-desktop-git \
 visual-studio-code-bin \
 waybar \
 wofi \
-wps-office \
 xcursor-simp1e \
 yadm-git \
 zramd
@@ -136,6 +135,11 @@ cd ~;yadm clone https://github.com/meyvin/dotfiles.git
 ################################################################################
 sudo systemctl enable --user kanshi
 sudo systemctl enable zramd
+
+################################################################################
+#### Start ssh-agent                                                        ####
+################################################################################
+eval `ssh-agent -s`
 
 ################################################################################
 #### ZSH & Dotfiles Configuration                                           ####
