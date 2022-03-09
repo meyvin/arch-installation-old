@@ -37,6 +37,7 @@ gedit-plugins \
 gnome-calculator \
 gnome-keyring \
 jq \
+nextcloud-client \
 playerctl \
 polkit-gnome \
 qt5-wayland \
@@ -83,7 +84,6 @@ grim \
 intellij-idea-ultimate-edition \
 intellij-idea-ultimate-edition-jre \
 kanshi \
-mako-git \
 nerd-fonts-complete \
 nnn-nerd \
 otf-monaco-powerline-font-git \
@@ -95,6 +95,7 @@ spotify \
 swappy \
 sway-audio-idle-inhibit-git \
 swaylock-effects \
+swaync-git \
 sxiv \
 tela-icon-theme \
 ttf-material-design-icons-desktop-git \
