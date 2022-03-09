@@ -127,7 +127,6 @@ echo "Creating filesystems and enabling swap"
 mkfs.vfat /dev/nvme0n1p1
 mkfs.ext4 /dev/vg1/root
 mkfs.ext4 /dev/vg1/home
-mkswap /dev/vg1/swap
 
 ################################################################################
 #### Install Arch                                                           ####
