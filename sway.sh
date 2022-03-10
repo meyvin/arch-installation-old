@@ -27,6 +27,7 @@ sudo pacman -Syu
 echo "Installing Sway Desktop Environment"
 sudo pacman -S \
 blueman \
+brightnessctl \
 docker \
 docker-compose \
 file-roller \
@@ -38,6 +39,7 @@ gnome-calculator \
 gnome-keyring \
 jq \
 nextcloud-client \
+pamixer \
 playerctl \
 polkit-gnome \
 qt5-wayland \
@@ -77,6 +79,7 @@ echo "Installing AUR packages"
 paru -S \
 adobe-base-14-fonts \
 arc-gtk-theme-git \
+avizo \
 celluloid \
 clipman \
 gitflow-avh \
