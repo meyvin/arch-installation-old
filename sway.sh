@@ -30,6 +30,7 @@ blueman \
 brightnessctl \
 docker \
 docker-compose \
+exa \
 file-roller \
 firefox-developer-edition \
 foot \
