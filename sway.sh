@@ -1,10 +1,8 @@
 #!/bin/bash
 
 ################################################################################
-#### Mirrors and Pacman.conf configuration                                  ####
+#### Pacman.conf configuration                                  ####
 ################################################################################
-MIRRORCOUNTRY="Netherlands"
-
 sudo timedatectl set-ntp true
 sudo hwclock --systohc
 
@@ -79,12 +77,12 @@ rm -rf ~/paru
 echo "Installing AUR packages"
 paru -S \
 adobe-base-14-fonts \
-arc-gtk-theme-git \
 avizo \
 celluloid \
 clipman \
 gitflow-avh \
 grim \
+gtk-theme-bubble-darker-blue-git \
 intellij-idea-ultimate-edition \
 intellij-idea-ultimate-edition-jre \
 kanshi \
@@ -103,6 +101,7 @@ swaync-git \
 sxiv \
 tela-icon-theme \
 ttf-material-design-icons-desktop-git \
+ttf-meslo-nerd-font-powerlevel10k \
 visual-studio-code-bin \
 waybar \
 wofi \
@@ -126,7 +125,7 @@ sudo sed -i '/MAX_SIZE/s/^# //g' /etc/default/zramd
 #### Gnome Theming                                                          ####
 ################################################################################
 echo "Enabling Gnome theme and icons"
-gsettings set org.gnome.desktop.interface gtk-theme 'Ark-Dark-solid'
+gsettings set org.gnome.desktop.interface gtk-theme 'Bubble-Darker-Blue'
 gsettings set org.gnome.desktop.interface icon-theme 'Tela-dark'
 
 ################################################################################
