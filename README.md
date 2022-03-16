@@ -28,15 +28,3 @@ install so just wait._
 1. Install Zramd aur package: `paru -S zramd`
 2. Edit the config file at: `/etc/default/zramd`
 3. Enable using: `sudo systemctl enable --now zramd.service`
-
-## Timeshift settings
-1. Select “BTRFS” as the “Snapshot Type”; continue with “Next”
-2. Choose your BTRFS system partition as “Snapshot Location”; continue with “Next”
-3. “Select Snapshot Levels” (type and number of snapshots that will be automatically created and managed/deleted by Timeshift), recommendations:
-    - Keep “Daily” at 5
-    - Activate “Boot”, but change to 3
-    - Activate “Stop cron emails for scheduled tasks”
-    - Continue with “Next”
-    - I also include @home subvolume (which is not selected by default). Note that when you restore a snapshot Timeshift will ask you again whether or not to include @home in the restore process.
-    - Click “Finish”
-4. “Create” your first snapshot manually and exit Timeshift.
