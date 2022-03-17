@@ -31,6 +31,7 @@ docker-compose \
 exa \
 file-roller \
 firefox-developer-edition \
+fish \
 foot \
 gedit \
 gedit-plugins \
@@ -59,8 +60,7 @@ wget \
 xorg-xwayland \
 zathura \
 zathura-cb \
-zathura-pdf-mupdf \
-zsh
+zathura-pdf-mupdf
 
 ################################################################################
 #### Paru aur package manager installation                                  ####
@@ -148,8 +148,8 @@ eval `ssh-agent -s`
 ################################################################################
 #### ZSH & Dotfiles Configuration                                           ####
 ################################################################################
-echo "Switch to and set ZSH as default"
-chsh -s /usr/bin/zsh
+echo "Switch to and set Fish as default"
+chsh -s /usr/bin/fish
 
 echo "Reboot and start Sway in:"
 echo -e "\e[1;32m5..4..3..2..1..\e[0m"
