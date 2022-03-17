@@ -223,6 +223,8 @@ inetutils \
 ipset \
 iptables-nft \
 linux-headers \
+man-db \
+man-pages \
 network-manager-applet \
 networkmanager \
 nfs-utils \
