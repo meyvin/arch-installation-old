@@ -87,6 +87,7 @@ intellij-idea-ultimate-edition \
 intellij-idea-ultimate-edition-jre \
 kanshi \
 nerd-fonts-complete \
+newsflash \
 nnn-nerd \
 otf-monaco-powerline-font-git \
 otf-font-awesome \
