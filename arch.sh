@@ -120,7 +120,7 @@ fi
 
 echo "Setting up LVM"
 vgcreate vg1 $lvm_volume
-lvcreate -L 60G vg1 -n root
+lvcreate -L 80G vg1 -n root
 lvcreate -l 100%FREE vg1 -n home
 
 echo "Creating filesystems and enabling swap"
@@ -187,7 +187,7 @@ case $gpu_manufacturer in
 	AMD)	
 		gpu_drivers="mesa lib32-mesa xf86-video-amdgpu vulkan-radeon lib32-vulkan-radeon";;
 	Intel)
-		gpu_drivers="mesa lib32-mesa xf86-video-intel vulkan-intel";;
+		gpu_drivers="mesa lib32-mesa vulkan-intel";;
 	Nvidia)	
 		gpu_drivers="nvidia lib32-nvidia-utils";;
 	*) ;;
@@ -230,7 +230,6 @@ networkmanager \
 nfs-utils \
 nss-mdns \
 ntfs-3g \
-openbsd-netcat \
 openssh \
 pipewire \
 pipewire-alsa \
